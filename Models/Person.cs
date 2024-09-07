@@ -8,6 +8,7 @@ namespace ManageStudents.Models
 {
     public class Person
     {
+        private static int _autoIncreaseId = 1; 
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime DOB { get; set; }
@@ -16,11 +17,11 @@ namespace ManageStudents.Models
         public float Weight { get; set; }
 
         public Person() { }
-        public Person(int id, string name, DateTime dOB, string address, float height, float weight)
+        public Person(string name, DateTime dob, string address, float height, float weight)
         {
-            Id = id;
+            Id = _autoIncreaseId++;
             Name = name;
-            DOB = dOB;
+            DOB = dob;
             Address = address;
             Height = height;
             Weight = weight;

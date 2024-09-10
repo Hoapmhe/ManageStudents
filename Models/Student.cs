@@ -25,7 +25,7 @@ namespace ManageStudents.Models
 
         public override string ToString()
         {
-            return $"{base.ToString()}, Student ID: {StudentId}, School: {School}, Year Started: {YearStarted}, GPA: {GPA}";
+            return $"{base.ToString()}\nStudent ID: {StudentId}, School: {School}, Year Started: {YearStarted}, GPA: {GPA}";
         }
     }
 }

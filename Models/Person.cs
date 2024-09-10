@@ -28,7 +28,7 @@ namespace ManageStudents.Models
         }
         public override string ToString()
         {
-            return $"Id: {Id}, Name: {Name}, Date of birth: {DOB}, Address: {Address}, Height: {Height}(cm), Weight: {Weight}(kg)";
+            return $"Id: {Id}, Name: {Name}, Date of birth: {DOB.ToShortDateString()}, Address: {Address}, Height: {Height}(cm), Weight: {Weight}(kg)";
         }
     }
 }

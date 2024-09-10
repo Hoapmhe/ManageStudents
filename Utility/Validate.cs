@@ -32,7 +32,7 @@ namespace ManageStudents.Utility
                 throw new ArgumentException($"Height must be between {Constants.HEIGHT_MIN} and {Constants.HEIGHT_MAX}(cm).");
         }
 
-        public static void CheckWidth(float width)
+        public static void CheckWeight(float width)
         {
             if (width < Constants.WEIGHT_MIN || width > Constants.WEIGHT_MAX)
                 throw new ArgumentException($"Weight must be between {Constants.WEIGHT_MIN} and {Constants.WEIGHT_MAX}(kg).");
@@ -55,7 +55,7 @@ namespace ManageStudents.Utility
             if(year <= Constants.YEAR_SCHOOL_STARTED) throw new ArgumentException($"Year of university started must be after {Constants.YEAR_SCHOOL_STARTED}.");    
         }
 
-        public static void CheckGpa(float gpa)
+        public static void CheckGpa(double gpa)
         {
             if(gpa < Constants.GPA_MIN ||  gpa > Constants.GPA_MAX)
                 throw new ArgumentException($"GPA must be between {Constants.GPA_MIN} and {Constants.GPA_MAX}.");  

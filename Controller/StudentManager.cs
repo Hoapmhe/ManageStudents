@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace ManageStudents.Controller
 {
@@ -53,18 +54,89 @@ namespace ManageStudents.Controller
             Console.WriteLine("Student added successfully!");
         }
 
-        public void FindStudentbyId()
+        public Student FindStudentbyId()
         {
             string studentId = input.GetStudentId();
             Student student = listStudents.SingleOrDefault(s => s.StudentId == studentId);
             if (student == null)
             {
                 Console.WriteLine($"Student with Id {studentId} not found!");
+                return null;
             }
             else
             {
                 Console.WriteLine(student.ToString());
+                return student;
             }
         }
+
+        public void UpdateStudentById()
+        {
+            Student student = FindStudentbyId();
+            if (student != null)
+            {
+                while (true)
+                {
+                    Console.WriteLine("\nSelect the field you want to update: ");
+                    Console.WriteLine("1. Name");
+                    Console.WriteLine("2. Date of Birth");
+                    Console.WriteLine("3. Address");
+                    Console.WriteLine("4. Height");
+                    Console.WriteLine("5. Weight");
+                    Console.WriteLine("6. Current School");
+                    Console.WriteLine("7. Year of University Entry");
+                    Console.WriteLine("8. GPA");
+                    Console.WriteLine("0. Exit update");
+                    Console.Write("Enter your choice: ");
+                    string choice = Console.ReadLine();
+                    try
+                    {
+                        switch (choice)
+                        {
+                            case "1":
+                                student.Name = input.GetName();
+                                break;
+                            case "2":
+                                student.DOB = input.GetDate();
+                                break;
+                            case "3":
+                                student.Address = input.GetAddress();
+                                break;
+                            case "4":
+                                student.Height = input.GetHeight();
+                                break;
+                            case "5":
+                                student.Weight = input.GetWeight();
+                                break;
+                            case "6":
+                                student.School = input.GetSchoolName();
+                                break;
+                            case "7":
+                                student.YearStarted = input.GetYearStarted();
+                                break;
+                            case "8":
+                                student.GPA = input.GetGpa();
+                                break;
+                            case "0":
+                                Console.WriteLine("Update finished.");
+                                return;
+                            default:
+                                Console.WriteLine("Invalid choice. Please try again.");
+                                break;
+                        }
+
+                        Console.WriteLine("Student details updated successfully:");
+                        Console.WriteLine(student.ToString());
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine($"Error: {ex.Message}. Update failed.");
+                    }
+                }
+            }
+        }
+
+         
+        
     }
 }

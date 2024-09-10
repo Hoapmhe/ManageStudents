@@ -136,7 +136,21 @@ namespace ManageStudents.Controller
             }
         }
 
-         
-        
+        public void DeleteStudentById()
+        {
+            Student student = FindStudentbyId();
+            if (student != null)
+            {
+                listStudents.Remove(student);
+                Console.WriteLine("Student deleted successfully");
+
+                //update ID of remaining student
+                for(int i = 0; i < listStudents.Count; i++)
+                {
+                    listStudents[i].Id = i+1;
+                }
+            }
+        }
+
     }
 }

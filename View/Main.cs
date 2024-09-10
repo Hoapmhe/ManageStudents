@@ -19,7 +19,8 @@ namespace ManageStudents.View
                 Console.WriteLine("\nChoose an option:");
                 Console.WriteLine("1. Add a new student");
                 Console.WriteLine("2. Search for a student by ID");
-                Console.WriteLine("3. Update student details by ID");
+                Console.WriteLine("3. Update student by ID");
+                Console.WriteLine("4. Delete student by ID");
                 Console.WriteLine("0. Exit program");
                 Console.Write("Enter your choice: ");
                 string choice = Console.ReadLine();
@@ -34,6 +35,9 @@ namespace ManageStudents.View
                         break;
                     case "3":
                         manager.UpdateStudentById();
+                        break;
+                    case "4":
+                        manager.DeleteStudentById();
                         break;
                     case "0":
                         return;

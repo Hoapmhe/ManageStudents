@@ -18,7 +18,7 @@ namespace ManageStudents.Models
         public const int STUDENT_ID_LENGTH = 10;
         public const int SCHOOL_NAME_LENGTH_MAX = 200;
         public const int YEAR_SCHOOL_STARTED = 1900;
-        public const float GPA_MIN = 0.0f;
-        public const float GPA_MAX = 10.0f;
+        public const double GPA_MIN = 0.0f;
+        public const double GPA_MAX = 10.0f;
     }
 }

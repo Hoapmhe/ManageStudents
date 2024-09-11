@@ -12,7 +12,7 @@ namespace ManageStudents.Models
         public string School { get; set; }
         public int YearStarted { get; set; }
         public double GPA { get; set; }
-
+        public AcademicPerformanceEnum AcademicPerformance { get; set; }
         public Student() { }
         public Student(string name, DateTime dob, string address, float height, float weight,
                         string studentId, string school, int yearStarted, double gpa) : base(name,dob,address,height,weight)
@@ -20,12 +20,40 @@ namespace ManageStudents.Models
             StudentId = studentId;
             School = school;
             YearStarted = yearStarted;
-            GPA = gpa;
+            GPA = GPA;
         }
 
         public override string ToString()
         {
             return $"{base.ToString()}\nStudent ID: {StudentId}, School: {School}, Year Started: {YearStarted}, GPA: {GPA}";
         }
+
+        public void UpdateAcademicPerformance()
+        {
+            if (GPA < 3)
+            {
+                AcademicPerformance = AcademicPerformanceEnum.POOR;
+            }
+            else if (GPA >= 3 && GPA < 5)
+            {
+                AcademicPerformance =  AcademicPerformanceEnum.FAIR;
+            }
+            else if (GPA >= 5 && GPA < 6.5)
+            {
+                AcademicPerformance = AcademicPerformanceEnum.WEAK;
+            }
+            else if (GPA >= 6.5 && GPA < 7.5)
+            {
+                AcademicPerformance = AcademicPerformanceEnum.AVERAGE;
+            }
+            else if (GPA >= 7.5 && GPA < 9)
+            {
+                AcademicPerformance = AcademicPerformanceEnum.GOOD;
+            }
+            else
+            {
+                AcademicPerformance = AcademicPerformanceEnum.EXCELLENT;
+            }
+        } 
     }
 }

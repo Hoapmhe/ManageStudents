@@ -21,6 +21,7 @@ namespace ManageStudents.View
                 Console.WriteLine("2. Search for a student by ID");
                 Console.WriteLine("3. Update student by ID");
                 Console.WriteLine("4. Delete student by ID");
+                Console.WriteLine("5. Display percent academic performance");
                 Console.WriteLine("9. Display all students");
                 Console.WriteLine("0. Exit program");
                 Console.Write("Enter your choice: ");
@@ -39,6 +40,9 @@ namespace ManageStudents.View
                         break;
                     case "4":
                         manager.DeleteStudentById();
+                        break;
+                    case "5":
+                        manager.DisplayPercentAcademicPerformance();
                         break;
                     case "9":
                         manager.DisplayAllStudent();

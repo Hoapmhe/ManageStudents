@@ -20,15 +20,16 @@ namespace ManageStudents.Models
             StudentId = studentId;
             School = school;
             YearStarted = yearStarted;
-            GPA = GPA;
+            GPA = gpa;
+            UpdateAcademicPerformance();
         }
 
         public override string ToString()
         {
-            return $"{base.ToString()}\nStudent ID: {StudentId}, School: {School}, Year Started: {YearStarted}, GPA: {GPA}";
+            return $"{base.ToString()}\nStudent ID: {StudentId}, School: {School}, Year Started: {YearStarted}, GPA: {GPA}, Academic: {AcademicPerformance}";
         }
 
-        public void UpdateAcademicPerformance()
+        private void UpdateAcademicPerformance()
         {
             if (GPA < 3)
             {
@@ -36,15 +37,15 @@ namespace ManageStudents.Models
             }
             else if (GPA >= 3 && GPA < 5)
             {
-                AcademicPerformance =  AcademicPerformanceEnum.FAIR;
+                AcademicPerformance =  AcademicPerformanceEnum.WEAK;
             }
             else if (GPA >= 5 && GPA < 6.5)
             {
-                AcademicPerformance = AcademicPerformanceEnum.WEAK;
+                AcademicPerformance = AcademicPerformanceEnum.AVERAGE;
             }
             else if (GPA >= 6.5 && GPA < 7.5)
             {
-                AcademicPerformance = AcademicPerformanceEnum.AVERAGE;
+                AcademicPerformance = AcademicPerformanceEnum.FAIR;
             }
             else if (GPA >= 7.5 && GPA < 9)
             {

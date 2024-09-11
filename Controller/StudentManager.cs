@@ -152,5 +152,14 @@ namespace ManageStudents.Controller
             }
         }
 
+        public void DisplayAllStudent()
+        {
+            foreach (Student student in listStudents)
+            {
+                Console.WriteLine(student.ToString());
+            }
+        }
+
+
     }
 }

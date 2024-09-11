@@ -31,7 +31,7 @@ namespace ManageStudents.View
                         manager.CreateStudent();
                         break;
                     case "2":
-                        manager.FindStudentbyId();
+                        manager.FindStudentById();
                         break;
                     case "3":
                         manager.UpdateStudentById();

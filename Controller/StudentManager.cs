@@ -54,7 +54,7 @@ namespace ManageStudents.Controller
             Console.WriteLine("Student added successfully!");
         }
 
-        public Student FindStudentbyId()
+        public Student FindStudentById()
         {
             string studentId = input.GetStudentId();
             Student student = listStudents.SingleOrDefault(s => s.StudentId == studentId);
@@ -72,7 +72,7 @@ namespace ManageStudents.Controller
 
         public void UpdateStudentById()
         {
-            Student student = FindStudentbyId();
+            Student student = FindStudentById();
             if (student != null)
             {
                 while (true)
@@ -138,7 +138,7 @@ namespace ManageStudents.Controller
 
         public void DeleteStudentById()
         {
-            Student student = FindStudentbyId();
+            Student student = FindStudentById();
             if (student != null)
             {
                 listStudents.Remove(student);

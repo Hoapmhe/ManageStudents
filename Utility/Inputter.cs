@@ -34,7 +34,7 @@ namespace ManageStudents.Utility
                 string regex = @"\d{1,2}-\d{1,2}-\d{4}";
                 while (true)
                 {
-                    Console.Write("Enter date of birth: ");
+                    Console.Write("Enter date of birth(dd-MM-yyyy): ");
                     string input = Console.ReadLine();
 
                     // Check format

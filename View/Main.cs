@@ -23,6 +23,7 @@ namespace ManageStudents.View
                 Console.WriteLine("4. Delete student by ID");
                 Console.WriteLine("5. Display percent academic performance");
                 Console.WriteLine("6. Display percent average score");
+                Console.WriteLine("7. Display list student by academic performance");
                 Console.WriteLine("9. Display all students");
                 Console.WriteLine("0. Exit program");
                 Console.Write("Enter your choice: ");
@@ -47,6 +48,9 @@ namespace ManageStudents.View
                         break;
                     case "6":
                         manager.DisplayPercentGpa();
+                        break;
+                    case "7":
+                        manager.DisplayListStudentByAcademicPerformance();
                         break;
                     case "9":
                         manager.DisplayAllStudent();

@@ -150,9 +150,9 @@ namespace ManageStudents.Controller
                 Console.WriteLine("Student deleted successfully");
 
                 //update ID of remaining student
-                for(int i = 0; i < listStudents.Count; i++)
+                for (int i = 0; i < listStudents.Count; i++)
                 {
-                    listStudents[i].Id = i+1;
+                    listStudents[i].Id = i + 1;
                 }
             }
         }
@@ -180,8 +180,8 @@ namespace ManageStudents.Controller
                                                 Percent = (double)group.Count() / listStudents.Count * 100
                                             })
                                             .OrderByDescending(g => g.Percent)
-                                            .ToList();  
-            foreach(var group in academicPerformaceGroups)
+                                            .ToList();
+            foreach (var group in academicPerformaceGroups)
             {
                 Console.WriteLine($"{group.TypeAcademicPerformance}: {group.Percent:F1}%");
             }
@@ -208,11 +208,68 @@ namespace ManageStudents.Controller
                 }
             }
 
-            foreach(var entry in frequencyGpa)
+            foreach (var entry in frequencyGpa)
             {
                 double percent = (double)entry.Value / listStudents.Count * 100;
                 Console.WriteLine($"GPA: {entry.Key} - {percent:F1}%");
             }
-        } 
+        }
+        public void DisplayListStudentByAcademicPerformance()
+        {
+            while (true)
+            {
+                Console.WriteLine("1. Poor");
+                Console.WriteLine("2. Weak");
+                Console.WriteLine("3. Average");
+                Console.WriteLine("4. Fair");
+                Console.WriteLine("5. Good");
+                Console.WriteLine("6. Excellent");
+                Console.WriteLine("0. Back to menu");
+                Console.WriteLine("Choose option to show list student by academic performance: ");
+                string choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+                        ListStudentByAcademicPerformane(AcademicPerformanceEnum.POOR);
+                        break;
+                    case "2":
+                        ListStudentByAcademicPerformane(AcademicPerformanceEnum.WEAK);
+                        break;
+                    case "3":
+                        ListStudentByAcademicPerformane(AcademicPerformanceEnum.AVERAGE);
+                        break;
+                    case "4":
+                        ListStudentByAcademicPerformane(AcademicPerformanceEnum.FAIR);
+                        break;
+                    case "5":
+                        ListStudentByAcademicPerformane(AcademicPerformanceEnum.GOOD);
+                        break;
+                    case "6":
+                        ListStudentByAcademicPerformane(AcademicPerformanceEnum.EXCELLENT);
+                        break;
+                    case "0":
+                        return;
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
+                }
+            }
+        }
+
+        private void ListStudentByAcademicPerformane(AcademicPerformanceEnum name)
+        {
+            var list = listStudents.Where(s => s.AcademicPerformance == name).ToList();
+            if(!list.Any())
+            {
+                Console.WriteLine($"No students found with {name} performance.");
+            }
+            else
+            {
+                foreach (var student in list)
+                {
+                    Console.WriteLine(student.ToString());  
+                }
+            }
+        }
     }
 }

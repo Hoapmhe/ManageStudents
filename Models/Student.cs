@@ -31,30 +31,15 @@ namespace ManageStudents.Models
 
         private void UpdateAcademicPerformance()
         {
-            if (GPA < 3)
+            AcademicPerformance = GPA switch
             {
-                AcademicPerformance = AcademicPerformanceEnum.POOR;
-            }
-            else if (GPA >= 3 && GPA < 5)
-            {
-                AcademicPerformance =  AcademicPerformanceEnum.WEAK;
-            }
-            else if (GPA >= 5 && GPA < 6.5)
-            {
-                AcademicPerformance = AcademicPerformanceEnum.AVERAGE;
-            }
-            else if (GPA >= 6.5 && GPA < 7.5)
-            {
-                AcademicPerformance = AcademicPerformanceEnum.FAIR;
-            }
-            else if (GPA >= 7.5 && GPA < 9)
-            {
-                AcademicPerformance = AcademicPerformanceEnum.GOOD;
-            }
-            else
-            {
-                AcademicPerformance = AcademicPerformanceEnum.EXCELLENT;
-            }
+                < 3 => AcademicPerformanceEnum.POOR,
+                >= 3 and < 5 => AcademicPerformanceEnum.WEAK,
+                >= 5 and < 6.5 => AcademicPerformanceEnum.AVERAGE,
+                >= 6.5 and < 7.5 => AcademicPerformanceEnum.FAIR,
+                >= 7.5 and < 9 => AcademicPerformanceEnum.GOOD,
+                _ => AcademicPerformanceEnum.EXCELLENT
+            };
         } 
     }
 }

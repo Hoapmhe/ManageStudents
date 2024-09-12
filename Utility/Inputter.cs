@@ -102,7 +102,13 @@ namespace ManageStudents.Utility
                 try
                 {
                     Console.Write("Enter height(cm): ");
-                    float height = float.Parse(Console.ReadLine());
+                    string input = Console.ReadLine();
+                    if (input.Contains(","))
+                    {
+                        Console.WriteLine("Error: Use a period (.) instead of a comma (,) for decimals.");
+                        continue;
+                    }
+                    float height = float.Parse(input, CultureInfo.InvariantCulture);
                     Validate.CheckHeight(height);
                     return height;
                 }
@@ -123,7 +129,13 @@ namespace ManageStudents.Utility
                 try
                 {
                     Console.Write("Enter weight(kg): ");
-                    float weight = float.Parse(Console.ReadLine());
+                    string input = Console.ReadLine();
+                    if (input.Contains(","))
+                    {
+                        Console.WriteLine("Error: Use a period (.) instead of a comma (,) for decimals.");
+                        continue;
+                    }
+                    float weight = float.Parse(input, CultureInfo.InvariantCulture);
                     Validate.CheckWeight(weight);
                     return weight;
                 }

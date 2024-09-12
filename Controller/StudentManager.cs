@@ -183,7 +183,7 @@ namespace ManageStudents.Controller
                                             .ToList();  
             foreach(var group in academicPerformaceGroups)
             {
-                Console.WriteLine($"{group.TypeAcademicPerformance}: {group.Percent}%");
+                Console.WriteLine($"{group.TypeAcademicPerformance}: {group.Percent:F1}%");
             }
         }
 
@@ -211,8 +211,8 @@ namespace ManageStudents.Controller
             foreach(var entry in frequencyGpa)
             {
                 double percent = (double)entry.Value / listStudents.Count * 100;
-                Console.WriteLine($"GPA: {entry.Key} - {percent}%");
+                Console.WriteLine($"GPA: {entry.Key} - {percent:F1}%");
             }
-        }     
+        } 
     }
 }

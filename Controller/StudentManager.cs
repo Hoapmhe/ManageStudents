@@ -186,5 +186,33 @@ namespace ManageStudents.Controller
                 Console.WriteLine($"{group.TypeAcademicPerformance}: {group.Percent}%");
             }
         }
+
+        public void DisplayPercentGpa()
+        {
+            if (!listStudents.Any())
+            {
+                Console.WriteLine("No students in the list");
+                return;
+            }
+            Dictionary<double, int> frequencyGpa = new Dictionary<double, int>();
+
+            foreach (Student student in listStudents)
+            {
+                if (frequencyGpa.ContainsKey(student.GPA))
+                {
+                    frequencyGpa[student.GPA]++;
+                }
+                else
+                {
+                    frequencyGpa[student.GPA] = 1;
+                }
+            }
+
+            foreach(var entry in frequencyGpa)
+            {
+                double percent = (double)entry.Value / listStudents.Count * 100;
+                Console.WriteLine($"GPA: {entry.Key} - {percent}%");
+            }
+        }     
     }
 }

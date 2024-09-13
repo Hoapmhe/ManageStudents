@@ -15,17 +15,19 @@ namespace ManageStudents.Controller
         private Inputter input;
         public StudentManager()
         {
-            listStudents = new List<Student>()
-            {
-                new Student("Nguyen Van A", new DateTime(2000, 5, 15), "Ha Noi", 170, 65, "HE00000001", "University A", 2018, 6.5),
-                new Student("Tran Thi B", new DateTime(2001, 9, 21), "Hai Phong", 160, 55, "HE00001111", "University B", 2019, 3.8),
-                new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000021", "University C", 2017, 7.2),
-                new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000022", "University C", 2017, 9.2),
-                new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000422", "University C", 2017, 9.2),
-                new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000122", "University C", 2017, 9.2),
-                new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000222", "University C", 2017, 9.2),
-                new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000023", "University C", 2017, 6.2)
-            };
+            //listStudents = new List<Student>()
+            //{
+            //    new Student("Nguyen Van A", new DateTime(2000, 5, 15), "Ha Noi", 170, 65, "HE00000001", "University A", 2018, 6.5),
+            //    new Student("Tran Thi B", new DateTime(2001, 9, 21), "Hai Phong", 160, 55, "HE00001111", "University B", 2019, 3.8),
+            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000021", "University C", 2017, 7.2),
+            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000022", "University C", 2017, 9.2),
+            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000422", "University C", 2017, 9.2),
+            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000122", "University C", 2017, 9.2),
+            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000222", "University C", 2017, 9.2),
+            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000023", "University C", 2017, 6.2)
+            //};
+            listStudents = new List<Student>();
+            ReadFromFile();
             input = new Inputter();
         }
 
@@ -159,6 +161,11 @@ namespace ManageStudents.Controller
 
         public void DisplayAllStudent()
         {
+            if(!listStudents.Any())
+            {
+                Console.WriteLine("No student in the list");
+                return;
+            }
             foreach (Student student in listStudents)
             {
                 Console.WriteLine(student.ToString());
@@ -271,5 +278,74 @@ namespace ManageStudents.Controller
                 }
             }
         }
+
+        public void SaveToFile()
+        {
+            string dicrectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = Path.Combine(dicrectoryPath, "listStudents.txt");
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    foreach (var student in listStudents)
+                    {
+                        writer.WriteLine($"{student.Name}, {student.DOB.ToShortDateString()}, {student.Address}," +
+                            $" {student.Height}, {student.Weight}, {student.StudentId}, {student.School}," +
+                            $" {student.YearStarted}, {student.GPA}, {student.AcademicPerformance}");
+                    }
+                }
+                Console.WriteLine("Data saved to file successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving to file: {ex.Message}");
+            }
+        }
+
+        public void ReadFromFile()
+        {
+            string dicrectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+            string filePath = Path.Combine(dicrectoryPath, "listStudents.txt");
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    File.Create(filePath).Close(); 
+                    return; 
+                }
+
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    string line;
+                    listStudents.Clear();
+
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] parts = line.Split(',');
+
+                        if (parts.Length == 10) 
+                        {
+                            string name = parts[0].Trim();
+                            DateTime dob = DateTime.Parse(parts[1]);
+                            string address = parts[2].Trim();
+                            float height = float.Parse(parts[3].Trim());
+                            float weight = float.Parse(parts[4].Trim());
+                            string studentId = parts[5].Trim();
+                            string school = parts[6].Trim();
+                            int yearStarted = int.Parse(parts[7].Trim());
+                            double gpa = double.Parse(parts[8].Trim());
+                            Student student = new Student(name, dob, address, height, weight, studentId, school, yearStarted, gpa);
+                            listStudents.Add(student);
+                        }
+                    }
+                }
+                Console.WriteLine("Data read from file successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error reading from file: {ex.Message}");
+            }
+        }
+
     }
 }

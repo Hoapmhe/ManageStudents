@@ -43,7 +43,7 @@ namespace ManageStudents.Controller
             {
                 studentId = input.GetStudentId();
                 //check dupplicate student id
-                if (listStudents.Any(s => s.StudentId == studentId))
+                if (listStudents.Any(s => s.StudentId.Equals(studentId, StringComparison.OrdinalIgnoreCase)))
                 {
                     Console.WriteLine("Student ID already exists. Please enter a different Student ID.");
                 }
@@ -68,7 +68,7 @@ namespace ManageStudents.Controller
             if (student == null)
             {
                 Console.WriteLine($"Student with Id {studentId} not found!");
-                return null;
+                return new Student();
             }
             else
             {

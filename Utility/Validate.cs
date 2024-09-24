@@ -52,7 +52,8 @@ namespace ManageStudents.Utility
 
         public static void CheckYearStarted(int year)
         {
-            if(year <= Constants.YearSchoolStarted) throw new ArgumentException($"Year of university started must be after {Constants.YearSchoolStarted}.");    
+            if(year <= Constants.YearSchoolStarted) throw new ArgumentException($"Year of university started must be after {Constants.YearSchoolStarted}.");
+            if (year > DateTime.Now.Year) throw new ArgumentException("Start year must be at least less than current year");
         }
 
         public static void CheckGpa(double gpa)

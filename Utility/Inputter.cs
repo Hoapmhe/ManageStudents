@@ -38,14 +38,22 @@ namespace ManageStudents.Utility
                 DateTime dob;
                 if (DateTime.TryParseExact(input, "dd-MM-yyyy", null, DateTimeStyles.AllowTrailingWhite, out dob))
                 {
-                    try
+                    // Check if the entered date is less than today's date
+                    if (dob >= DateTime.Now)
                     {
-                        Validate.CheckDOB(dob);
-                        return dob;
+                        Console.WriteLine("Date of birth must be earlier than today.");
                     }
-                    catch (ArgumentException e)
+                    else
                     {
-                        Console.WriteLine("Error: " + e.Message);
+                        try
+                        {
+                            Validate.CheckDOB(dob);
+                            return dob;
+                        }
+                        catch (ArgumentException e)
+                        {
+                            Console.WriteLine("Error: " + e.Message);
+                        }
                     }
                 }
                 else
@@ -55,18 +63,6 @@ namespace ManageStudents.Utility
             }
         }
 
-        private bool IsDateExist(string input)
-        {
-            try
-            {
-                DateTime.Parse(input);
-                return true;
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
-        }
         public string GetAddress()
         {
             while (true)

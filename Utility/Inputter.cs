@@ -27,45 +27,34 @@ namespace ManageStudents.Utility
                 }
             }
         }
+
         public DateTime GetDate()
         {
             while (true)
             {
-                string regex = @"\d{1,2}-\d{1,2}-\d{4}";
-                while (true)
-                {
-                    Console.Write("Enter date of birth(dd-MM-yyyy): ");
-                    string input = Console.ReadLine();
+                Console.Write("Enter date of birth (dd-MM-yyyy): ");
+                string input = Console.ReadLine();
 
-                    // Check format
-                    if (Regex.IsMatch(input, regex))
+                DateTime dob;
+                if (DateTime.TryParseExact(input, "dd-MM-yyyy", null, DateTimeStyles.AllowTrailingWhite, out dob))
+                {
+                    try
                     {
-                        // Check if input date exists
-                        if (IsDateExist(input))
-                        {
-                            try
-                            {
-                                DateTime dob = DateTime.Parse(input);
-                                Validate.CheckDOB(dob);
-                                return dob;
-                            }
-                            catch (ArgumentException e)
-                            {
-                                Console.WriteLine("Error: " + e.Message);
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Date does not exist!!");
-                        }
+                        Validate.CheckDOB(dob);
+                        return dob;
                     }
-                    else
+                    catch (ArgumentException e)
                     {
-                        Console.WriteLine("Input must be in format dd-MM-yyyy");
+                        Console.WriteLine("Error: " + e.Message);
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Input must be in format dd-MM-yyyy");
                 }
             }
         }
+
         private bool IsDateExist(string input)
         {
             try

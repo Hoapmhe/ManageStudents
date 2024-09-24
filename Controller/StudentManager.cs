@@ -70,11 +70,9 @@ namespace ManageStudents.Controller
                 Console.WriteLine($"Student with Id {studentId} not found!");
                 return new Student();
             }
-            else
-            {
-                Console.WriteLine(student.ToString());
-                return student;
-            }
+
+            Console.WriteLine(student.ToString());
+            return student;
         }
 
         public void UpdateStudentById()

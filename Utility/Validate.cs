@@ -11,54 +11,54 @@ namespace ManageStudents.Utility
     {
         public static void CheckName(string name)
         {
-            if (string.IsNullOrEmpty(name) || name.Length > Constants.NAME_LENGTH_MAX)
-                throw new ArgumentException($"Name must be between 1 and {Constants.NAME_LENGTH_MAX} characters.");
+            if (string.IsNullOrEmpty(name) || name.Length > Constants.NameLengthMax)
+                throw new ArgumentException($"Name must be between 1 and {Constants.NameLengthMax} characters.");
         }
 
         public static void CheckDOB(DateTime dob)
         {
-            if (dob.Year <= Constants.YEAR_MIN) throw new ArgumentException($"Date of birth from {Constants.YEAR_MIN}");
+            if (dob.Year <= Constants.YearMin) throw new ArgumentException($"Date of birth from {Constants.YearMin}");
         }
 
         public static void CheckAddress(string address)
         {
-            if (address != null && address.Length > Constants.ADDRESS_LENGTH_MAX)
-                throw new ArgumentException($"Address must be less than {Constants.ADDRESS_LENGTH_MAX} characters.");
+            if (address != null && address.Length > Constants.AddressLengthMax)
+                throw new ArgumentException($"Address must be less than {Constants.AddressLengthMax} characters.");
         }
 
         public static void CheckHeight(float height)
         {
-            if (height < Constants.HEIGHT_MIN || height > Constants.HEIGHT_MAX)
-                throw new ArgumentException($"Height must be between {Constants.HEIGHT_MIN} and {Constants.HEIGHT_MAX}(cm).");
+            if (height < Constants.HeightMin || height > Constants.HeightMax)
+                throw new ArgumentException($"Height must be between {Constants.HeightMin} and {Constants.HeightMax}(cm).");
         }
 
         public static void CheckWeight(float width)
         {
-            if (width < Constants.WEIGHT_MIN || width > Constants.WEIGHT_MAX)
-                throw new ArgumentException($"Weight must be between {Constants.WEIGHT_MIN} and {Constants.WEIGHT_MAX}(kg).");
+            if (width < Constants.WeightMin || width > Constants.WeightMax)
+                throw new ArgumentException($"Weight must be between {Constants.WeightMin} and {Constants.WeightMax}(kg).");
         }
 
         public static void CheckStudentId(string id)
         {
-            if (string.IsNullOrWhiteSpace(id) || id.Length != Constants.STUDENT_ID_LENGTH)
-                throw new ArgumentException($"Student ID must be {Constants.STUDENT_ID_LENGTH} characters.");
+            if (string.IsNullOrWhiteSpace(id) || id.Length != Constants.StudentIdLength)
+                throw new ArgumentException($"Student ID must be {Constants.StudentIdLength} characters.");
         }
 
         public static void CheckSchoolName(string schoolName)
         {
-            if (string.IsNullOrEmpty(schoolName) || schoolName.Length >= Constants.SCHOOL_NAME_LENGTH_MAX)
-                throw new ArgumentException($"Current school must be less than {Constants.SCHOOL_NAME_LENGTH_MAX} characters.");
+            if (string.IsNullOrEmpty(schoolName) || schoolName.Length >= Constants.SchollNameLengthMax)
+                throw new ArgumentException($"Current school must be less than {Constants.SchollNameLengthMax} characters.");
         }
 
         public static void CheckYearStarted(int year)
         {
-            if(year <= Constants.YEAR_SCHOOL_STARTED) throw new ArgumentException($"Year of university started must be after {Constants.YEAR_SCHOOL_STARTED}.");    
+            if(year <= Constants.YearSchoolStarted) throw new ArgumentException($"Year of university started must be after {Constants.YearSchoolStarted}.");    
         }
 
         public static void CheckGpa(double gpa)
         {
-            if(gpa < Constants.GPA_MIN ||  gpa > Constants.GPA_MAX)
-                throw new ArgumentException($"GPA must be between {Constants.GPA_MIN} and {Constants.GPA_MAX}.");  
+            if(gpa < Constants.GpaMin ||  gpa > Constants.GpaMax)
+                throw new ArgumentException($"GPA must be between {Constants.GpaMin} and {Constants.GpaMax}.");  
         }
     }
 }

@@ -15,17 +15,6 @@ namespace ManageStudents.Controller
         private Inputter input;
         public StudentManager()
         {
-            //listStudents = new List<Student>()
-            //{
-            //    new Student("Nguyen Van A", new DateTime(2000, 5, 15), "Ha Noi", 170, 65, "HE00000001", "University A", 2018, 6.5),
-            //    new Student("Tran Thi B", new DateTime(2001, 9, 21), "Hai Phong", 160, 55, "HE00001111", "University B", 2019, 3.8),
-            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000021", "University C", 2017, 7.2),
-            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000022", "University C", 2017, 9.2),
-            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000422", "University C", 2017, 9.2),
-            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000122", "University C", 2017, 9.2),
-            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000222", "University C", 2017, 9.2),
-            //    new Student("Le Van C", new DateTime(1999, 12, 30), "Da Nang", 175, 70, "HE00000023", "University C", 2017, 6.2)
-            //};
             listStudents = new List<Student>();
             ReadFromFile();
             input = new Inputter();
